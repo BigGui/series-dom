@@ -1,6 +1,31 @@
 
 // 1/ Récupérer en javascript les données sur les séries présentes dans le fichier datas/series.json.
 
+// METHOD 1 - Promise with fetch
+// fetch('/datas/series.json')
+//     .then(response => response.json())
+//     .then(runScript)
+//     .catch(e => console.error('Impossible de charger les données : ' + e));
+
+
+// METHOD 2 - async function
+async function fetchSeriesData(url) {
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    }
+    catch (e) {
+        console.error('Impossible de charger les données : ' + e);
+    }
+}
+
+fetchSeriesData('/datas/series.json')
+    .then(runScript);
+
+function runScript(data) {
+    console.log('bla balabla');
+    console.log(data);
+}
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
 
