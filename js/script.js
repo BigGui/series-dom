@@ -72,3 +72,9 @@
 
 
 // 24/ Permettez à la fonction précédente de gérer un click sur un autre lien pour trier les series par années décroissantes.
+
+
+// 25/ Créer une fonction qui permet de sauvegarder les favoris de l'utilisateur dans son navigateur.
+
+
+// 26/ Créer une fonction qui permet de récupérer les favoris de l'utilisateur stockés dans son navigateur.
