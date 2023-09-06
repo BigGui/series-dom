@@ -30,15 +30,18 @@ fetchSeriesData('/datas/series.json')
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
 
-function displaySeries(series) {
+function displaySeries2(series) {
     const seriesContainer = document.getElementById('series-container');
     for (const serie of series) {
-        seriesContainer.appendChild(getSerieElement(serie));
+        seriesContainer.appendChild(createSerieElement(serie));
     }
-    // seriesContainer.innerHTML = series.map(series => ).join('');
 }
 
-function getSerieElement(serie) {
+function displaySeries(series) {
+    document.getElementById('series-container').append(...series.map(createSerieElement));
+}
+
+function createSerieElement(serie) {
     // Copy template
     const serieElement = document.importNode(document.getElementById('serie-template').content, true);
     
