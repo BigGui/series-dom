@@ -23,15 +23,25 @@ fetchSeriesData('/datas/series.json')
     .then(runScript);
 
 function runScript(data) {
-    console.log('bla balabla');
-    console.log(data);
+    // console.log('bla balabla');
+    // console.log(data);
+    displaySeries(data);
 }
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
 
 function displaySeries(series) {
     const seriesContainer = document.getElementById('series-container');
-    seriesContainer.innerHTML = series.map(series => ).join('');
+    const serieTemplate = document.getElementById('serie-template');
+    for (const serie of series) {
+        const serieElement = document.importNode(serieTemplate.content, true);
+        serieElement.querySelector('.serie-ttl').textContent = serie.name;
+        const img = serieElement.querySelector('.serie-img');
+        img.src = serie.image;
+        img.alt = serie.name;
+        seriesContainer.appendChild(serieElement);
+    }
+    // seriesContainer.innerHTML = series.map(series => ).join('');
 }
 
 // 3/ Créer une fonction qui retourne la liste des styles de séries présents dans les données.
