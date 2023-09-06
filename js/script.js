@@ -29,6 +29,11 @@ function runScript(data) {
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
 
+function displaySeries(series) {
+    const seriesContainer = document.getElementById('series-container');
+    seriesContainer.innerHTML = series.map(series => ).join('');
+    
+}
 
 // 3/ Créer une fonction qui retourne la liste des styles de séries présents dans les données.
 

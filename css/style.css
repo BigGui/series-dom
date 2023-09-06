@@ -40,3 +40,14 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+.series {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.serie-itm {}
+.serie-ttl {}
+.serie-img {
+    width: 100%;
+}
