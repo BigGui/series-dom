@@ -32,7 +32,6 @@ function runScript(data) {
 function displaySeries(series) {
     const seriesContainer = document.getElementById('series-container');
     seriesContainer.innerHTML = series.map(series => ).join('');
-    
 }
 
 // 3/ Créer une fonction qui retourne la liste des styles de séries présents dans les données.
