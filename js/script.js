@@ -19,7 +19,7 @@ async function fetchSeriesData(url) {
     }
 }
 
-fetchSeriesData('../datas/series.json')
+fetchSeriesData('datas/series.json')
     .then(displaySeries);
 
 // function runScript(data) {
