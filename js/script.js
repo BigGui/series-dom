@@ -20,7 +20,12 @@ async function fetchSeriesData(url) {
 }
 
 fetchSeriesData('datas/series.json')
-    .then(displaySeries);
+    .then((series) => {
+        displaySeries(series);
+        console.log(
+            getStyles(series)
+        );
+    });
 
 // function runScript(data) {
 //     // console.log('bla balabla');
@@ -44,7 +49,7 @@ function displaySeries(series) {
 function createSerieElement(serie) {
     // Copy template
     const serieElement = document.importNode(document.getElementById('serie-template').content, true);
-    
+
     // Put the name
     serieElement.querySelector('.serie-ttl').textContent = serie.name;
 
@@ -58,8 +63,24 @@ function createSerieElement(serie) {
 
 // 3/ Créer une fonction qui retourne la liste des styles de séries présents dans les données.
 
+function getStyles(series) {
+    let listStyles = [];
+    series.forEach(serie => {
+        serie.styles.forEach(style => {
+            if (!listStyles.includes(style)) listStyles.push(style);
+        });
+    });
 
-// 4/ Créer une fonction qui affiche la liste des styles de séries.
+    return listStyles;
+}
+
+function getStyles(series) {
+    return series
+        .flatMap(serie => serie.styles)
+        .filter((style, i, array) => array.indexOf(style) === i);
+}
+
+// 4/ Créer une fonction qui affiche la sliste des styles de séries.
 
 
 // 5/ Créer une fonction qui compte le nombre de séries d'un style.
