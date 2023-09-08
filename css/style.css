@@ -51,3 +51,15 @@ button:focus {
 .serie-img {
     width: 100%;
 }
+
+.nav-bar {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 10px;
+    margin: 5px;
+    border: solid 1px black;
+}

@@ -22,16 +22,8 @@ async function fetchSeriesData(url) {
 fetchSeriesData('datas/series.json')
     .then((series) => {
         displaySeries(series);
-        console.log(
-            getStyles(series)
-        );
+        displaySerieStyles(getStyles(series));
     });
-
-// function runScript(data) {
-//     // console.log('bla balabla');
-//     // console.log(data);
-//     displaySeries(data);
-// }
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
 
@@ -80,8 +72,18 @@ function getStyles(series) {
         .filter((style, i, array) => array.indexOf(style) === i);
 }
 
-// 4/ Créer une fonction qui affiche la sliste des styles de séries.
+// 4/ Créer une fonction qui affiche la liste des styles de séries.
 
+function displaySerieStyles(styles) {
+    for (const style of styles) {
+        const newLi = document.createElement('li');
+        const newBtn = document.createElement('button');
+        newBtn.classList.add('nav-btn');
+        newBtn.textContent = style;
+        newLi.appendChild(newBtn);
+        document.querySelector('#nav-bar-list').appendChild(newLi);
+    }
+}
 
 // 5/ Créer une fonction qui compte le nombre de séries d'un style.
 
