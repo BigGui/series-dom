@@ -33,6 +33,8 @@ fetchSeriesData('datas/series.json')
         );
 
         activeLastStyle();
+
+        displaySeriesByIds([5, 3, 6]);
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -54,6 +56,9 @@ function createSerieElement(serie) {
 
     // Put the name
     serieElement.querySelector('.serie-ttl').textContent = serie.name;
+    
+    // Set data-id
+    serieElement.querySelector('.serie-itm').dataset.id = serie.id;
 
     // Change image
     const img = serieElement.querySelector('.serie-img');
@@ -163,8 +168,15 @@ function removeActiveStyles() {
     document.querySelectorAll('#nav-bar .active').forEach(e => e.classList.remove('active'));
 }
 
-// 10/ Créer une fonction qui affiche dans la page uniquement les séries dont l'id est en paramètre.
+// 10/ Créer une fonction qui affiche dans la page uniquement les séries dont les ids sont en paramètre.
 
+function displaySeriesByIds(ids) {
+    document.querySelectorAll('.serie-itm').forEach(serieElement => {
+        serieElement.classList.remove('active');
+
+        if (ids.includes(parseInt(serieElement.dataset.id))) serieElement.classList.add('active');
+    });
+}
 
 // 11/ Modifier la fonction de la question 8/ pour n'afficher que les series du style souligné.
 

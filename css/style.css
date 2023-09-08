@@ -47,6 +47,9 @@ button:focus {
 }
 
 .serie-itm {}
+.serie-itm:not(.active) {
+    display: none;
+}
 .serie-ttl {}
 .serie-img {
     width: 100%;
