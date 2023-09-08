@@ -63,3 +63,8 @@ button:focus {
     margin: 5px;
     border: solid 1px black;
 }
+
+.nav-btn.active {
+    text-decoration: underline;
+}
+

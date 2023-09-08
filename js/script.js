@@ -31,6 +31,8 @@ fetchSeriesData('datas/series.json')
         console.log(
             getIdFromStyle("Science fiction")
         );
+
+        activeLastStyle();
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -146,10 +148,20 @@ function getIdFromStyle(style) {
 
 // 8/ Créer une fonction qui souligne le dernier style cliqué.
 // Un seul style doit rester souligné à la fois.
+function activeLastStyle() {
+    document.getElementById('nav-bar').addEventListener('click', function(event) {
+        if (!event.target.classList.contains('nav-btn')) return;
 
+        removeActiveStyles();
+        event.target.classList.add('active');
+    });
+}
 
 // 9/ Créer une fonction pour retirer le soulignement de tous les styles.
 
+function removeActiveStyles() {
+    document.querySelectorAll('#nav-bar .active').forEach(e => e.classList.remove('active'));
+}
 
 // 10/ Créer une fonction qui affiche dans la page uniquement les séries dont l'id est en paramètre.
 
