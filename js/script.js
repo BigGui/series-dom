@@ -74,7 +74,7 @@ function getStyles(series) {
 
 // 4/ Créer une fonction qui affiche la liste des styles de séries.
 
-function displaySerieStyles(styles) {
+function displaySerieStyles2(styles) {
     for (const style of styles) {
         const newLi = document.createElement('li');
         const newBtn = document.createElement('button');
@@ -84,6 +84,21 @@ function displaySerieStyles(styles) {
         document.querySelector('#nav-bar-list').appendChild(newLi);
     }
 }
+
+function displaySerieStyles(styles) {
+    document.querySelector('#nav-bar-list').append(...styles.map(createStyleElement));
+}
+
+function createStyleElement(style) {
+    // Copy template
+    const styleElement = document.importNode(document.getElementById('style-template').content, true);
+
+    // Put the name
+    styleElement.querySelector('.nav-btn').textContent = style;
+
+    return styleElement;
+}
+
 
 // 5/ Créer une fonction qui compte le nombre de séries d'un style.
 
