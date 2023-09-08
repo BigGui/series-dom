@@ -23,6 +23,8 @@ fetchSeriesData('datas/series.json')
     .then((series) => {
         displaySeries(series);
         displaySerieStyles(getStyles(series));
+
+        console.log(countSeriesFromStyle(series, "Aventure"));
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -102,6 +104,19 @@ function createStyleElement(style) {
 
 // 5/ Créer une fonction qui compte le nombre de séries d'un style.
 
+function countSeriesFromStyle2(series, style) {
+    let counter = 0;
+    series.forEach(serie => {
+        if (serie.styles.includes(style)) counter++;
+    });
+    return counter;
+}
+
+function countSeriesFromStyle(series, style) {
+    return series
+        .filter(serie => serie.styles.includes(style))
+        .length;
+}
 
 // 6/ Affichez dans la liste des styles le nombre de séries corresondantes entre parenthèse.
 //      Modifier la fonction de la question 4/
