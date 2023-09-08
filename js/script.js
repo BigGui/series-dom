@@ -130,12 +130,18 @@ function countSeriesFromStyle(style) {
 
 // 7/ Créer une fonction qui retourne les ID des séries d'un style.
 
-function getIdFromStyle(style) {
+function getIdFromStyle2(style) {
     let ids = [];
     series.forEach(serie => {
         if (serie.styles.includes(style)) ids.push(serie.id);
     });
     return ids;
+}
+
+function getIdFromStyle(style) {
+    return series
+        .filter(serie => serie.styles.includes(style))
+        .map(serie => serie.id);
 }
 
 // 8/ Créer une fonction qui souligne le dernier style cliqué.
