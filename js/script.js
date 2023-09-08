@@ -27,6 +27,10 @@ fetchSeriesData('datas/series.json')
         series = data;
         displaySeries();
         displaySerieStyles(getStyles());
+
+        console.log(
+            getIdFromStyle("Science fiction")
+        );
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -126,6 +130,13 @@ function countSeriesFromStyle(style) {
 
 // 7/ Créer une fonction qui retourne les ID des séries d'un style.
 
+function getIdFromStyle(style) {
+    let ids = [];
+    series.forEach(serie => {
+        if (serie.styles.includes(style)) ids.push(serie.id);
+    });
+    return ids;
+}
 
 // 8/ Créer une fonction qui souligne le dernier style cliqué.
 // Un seul style doit rester souligné à la fois.
