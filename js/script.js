@@ -8,6 +8,7 @@
 //     .catch(e => console.error('Impossible de charger les données : ' + e));
 
 
+
 // METHOD 2 - async function
 async function fetchSeriesData(url) {
     try {
@@ -19,24 +20,27 @@ async function fetchSeriesData(url) {
     }
 }
 
-fetchSeriesData('datas/series.json')
-    .then((series) => {
-        displaySeries(series);
-        displaySerieStyles(getStyles(series));
+let series = [];
 
-        console.log(countSeriesFromStyle(series, "Aventure"));
+fetchSeriesData('datas/series.json')
+    .then((data) => {
+        series = data;
+        displaySeries();
+        displaySerieStyles(getStyles());
+
+        console.log(countSeriesFromStyle("Aventure"));
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
 
-// function displaySeries2(series) {
+// function displaySeries2() {
 //     const seriesContainer = document.getElementById('series-container');
 //     for (const serie of series) {
 //         seriesContainer.appendChild(createSerieElement(serie));
 //     }
 // }
 
-function displaySeries(series) {
+function displaySeries() {
     document.getElementById('series-container').append(...series.map(createSerieElement));
 }
 
@@ -57,7 +61,7 @@ function createSerieElement(serie) {
 
 // 3/ Créer une fonction qui retourne la liste des styles de séries présents dans les données.
 
-function getStyles(series) {
+function getStyles2() {
     let listStyles = [];
     series.forEach(serie => {
         serie.styles.forEach(style => {
@@ -68,7 +72,7 @@ function getStyles(series) {
     return listStyles;
 }
 
-function getStyles(series) {
+function getStyles() {
     return series
         .flatMap(serie => serie.styles)
         .filter((style, i, array) => array.indexOf(style) === i);
@@ -104,7 +108,7 @@ function createStyleElement(style) {
 
 // 5/ Créer une fonction qui compte le nombre de séries d'un style.
 
-function countSeriesFromStyle2(series, style) {
+function countSeriesFromStyle2(style) {
     let counter = 0;
     series.forEach(serie => {
         if (serie.styles.includes(style)) counter++;
@@ -112,7 +116,7 @@ function countSeriesFromStyle2(series, style) {
     return counter;
 }
 
-function countSeriesFromStyle(series, style) {
+function countSeriesFromStyle(style) {
     return series
         .filter(serie => serie.styles.includes(style))
         .length;
