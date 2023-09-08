@@ -27,8 +27,6 @@ fetchSeriesData('datas/series.json')
         series = data;
         displaySeries();
         displaySerieStyles(getStyles());
-
-        console.log(countSeriesFromStyle("Aventure"));
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -92,15 +90,15 @@ function displaySerieStyles2(styles) {
 }
 
 function displaySerieStyles(styles) {
-    document.querySelector('#nav-bar-list').append(...styles.map(createStyleElement));
+    document.querySelector('#nav-bar-list').append(...styles.map(s => createStyleElement(s, countSeriesFromStyle(s))));
 }
 
-function createStyleElement(style) {
+function createStyleElement(style, nb) {
     // Copy template
     const styleElement = document.importNode(document.getElementById('style-template').content, true);
 
     // Put the name
-    styleElement.querySelector('.nav-btn').textContent = style;
+    styleElement.querySelector('.nav-btn').textContent = `${style} (${nb})`;
 
     return styleElement;
 }
