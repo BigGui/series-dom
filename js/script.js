@@ -194,11 +194,10 @@ function getSerieFromId(id) {
 function manageClickOnSeries() {
     document.querySelectorAll('#series-container .serie-itm').forEach(serie => {
         serie.addEventListener('click', function(event) {
-            console.log(parseInt(this.dataset.id));
+            console.log(getSerieFromId(parseInt(this.dataset.id)));
         });
     });
 }
-
 
 // 14/ Modifier la fonction ci-dessus pour retourner toutes les infos de la serie cliquée dans la console.
 
