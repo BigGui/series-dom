@@ -28,13 +28,7 @@ fetchSeriesData('datas/series.json')
         displaySeries();
         displaySerieStyles(getStyles());
 
-        console.log(
-            getIdFromStyle("Science fiction")
-        );
-
         activeLastStyle();
-
-        displaySeriesByIds([5, 3, 6]);
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -110,6 +104,9 @@ function createStyleElement(style, nb) {
 
     // Put the name
     styleElement.querySelector('.nav-btn').textContent = `${style} (${nb})`;
+
+    // Add style name attribute
+    styleElement.querySelector('.nav-btn').dataset.styleName = style;
 
     return styleElement;
 }
