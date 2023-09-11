@@ -29,6 +29,7 @@ fetchSeriesData('datas/series.json')
         displaySerieStyles(getStyles());
 
         activeLastStyle();
+        manageClickOnSeries();
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -50,7 +51,7 @@ function createSerieElement(serie) {
 
     // Put the name
     serieElement.querySelector('.serie-ttl').textContent = serie.name;
-    
+
     // Set data-id
     serieElement.querySelector('.serie-itm').dataset.id = serie.id;
 
@@ -151,7 +152,7 @@ function getIdFromStyle(style) {
 // 8/ Créer une fonction qui souligne le dernier style cliqué.
 // Un seul style doit rester souligné à la fois.
 function activeLastStyle() {
-    document.getElementById('nav-bar').addEventListener('click', function(event) {
+    document.getElementById('nav-bar').addEventListener('click', function (event) {
         if (!event.target.classList.contains('nav-btn')) return;
 
         removeActiveStyles();
@@ -189,6 +190,14 @@ function getSerieFromId(id) {
 
 
 // 13/ Créer une fonction qui permet qu'au clic sur une série, on affiche son id dans la console.
+
+function manageClickOnSeries() {
+    document.querySelectorAll('#series-container .serie-itm').forEach(serie => {
+        serie.addEventListener('click', function(event) {
+            console.log(parseInt(this.dataset.id));
+        });
+    });
+}
 
 
 // 14/ Modifier la fonction ci-dessus pour retourner toutes les infos de la serie cliquée dans la console.
