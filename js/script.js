@@ -21,6 +21,7 @@ async function fetchSeriesData(url) {
 }
 
 let series = [];
+let favorites = [];
 
 fetchSeriesData('datas/series.json')
     .then((data) => {
@@ -30,6 +31,13 @@ fetchSeriesData('datas/series.json')
 
         activeLastStyle();
         manageClickOnSeries();
+
+        addSerieToFav(5);
+        addSerieToFav(12);
+        addSerieToFav(1);
+        addSerieToFav(5);
+        addSerieToFav(1);
+        console.log(favorites);
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -205,6 +213,11 @@ function manageClickOnSeries() {
 // 15/ Créer une fonction permettant d'ajouter une série à une liste de favoris dans un array.
 // Une série ne peut être présente qu'une fois dans le tableau.
 
+function addSerieToFav(id) {
+    if (!series.map(s => s.id).includes(id) || favorites.includes(id)) return false;
+    favorites.push(id);
+    return true;
+}
 
 // 16/ Créer une fonction pour ajouter une série en favori au clic.
 
