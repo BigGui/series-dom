@@ -31,6 +31,7 @@ fetchSeriesData('datas/series.json')
 
         activeLastStyle();
         manageClickOnSeries();
+        manageCickOnFav();
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -222,15 +223,18 @@ function addSerieToFav(id) {
 function displayFavorites() {
     const favEl = document.getElementById('fav-lst');
     favEl.innerHTML = '';
-    favEl.append(...favorites.map(id => createFavElement(getSerieFromId(id).name)));
+    favEl.append(...favorites.map(id => createFavElement(getSerieFromId(id))));
 }
 
-function createFavElement(favorite) {
+function createFavElement(serie) {
     // Copy template
     const favElement = document.importNode(document.getElementById('fav-template').content, true);
 
     // Put the name
-    favElement.querySelector('.fav-itm').textContent = favorite;
+    favElement.querySelector('.fav-itm').textContent = serie.name;
+
+    // Put the id
+    favElement.querySelector('.fav-btn').dataset.id = serie.id;
 
     return favElement;
 }
@@ -238,9 +242,20 @@ function createFavElement(favorite) {
 
 // 18/ Créer une fonction permettant de retirer une série de la liste des favoris de par son id.
 
+function removeIdFromFav(idToRemove) {
+    favorites = favorites.filter(id =>  id !== idToRemove);
+    displayFavorites();
+}
 
 // 19/ Créer une fonction qui fasse qu'au clic sur un favori il se retire de la liste des favoris.
 
+function manageCickOnFav() {
+    document.getElementById('fav-lst').addEventListener('click', function(event) {
+        if (!event.target.classList.contains('fav-btn')) return;
+
+        removeIdFromFav(parseInt(event.target.dataset.id));
+    }); 
+}
 
 // 20/ Créer une fonction qui affiche le nombre de favoris en titre de la liste des favoris.
 

@@ -71,3 +71,8 @@ button:focus {
     text-decoration: underline;
 }
 
+
+
+.fav-btn:hover {
+    text-decoration: underline;
+}
