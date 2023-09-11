@@ -32,6 +32,8 @@ fetchSeriesData('datas/series.json')
         activeLastStyle();
         manageClickOnSeries();
         manageCickOnFav();
+
+        console.table(getSeriesIdsByDate());
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -221,9 +223,17 @@ function addSerieToFav(id) {
 // 17/ Créer une fonction qui affiche le nom des séries favorites dans la page.
 
 function displayFavorites() {
+    // Get favorites list element
     const favEl = document.getElementById('fav-lst');
+    
+    // Empty fav list
     favEl.innerHTML = '';
+
+    // Put all favorites series to the list from template
     favEl.append(...favorites.map(id => createFavElement(getSerieFromId(id))));
+    
+    // Update fav counters
+    displayFavCounter();
 }
 
 function createFavElement(serie) {
@@ -259,9 +269,17 @@ function manageCickOnFav() {
 
 // 20/ Créer une fonction qui affiche le nombre de favoris en titre de la liste des favoris.
 
+function displayFavCounter() {
+    document.getElementById('fav-counter').textContent = favorites.length;
+}
 
 // 21/ Créer une fonction qui retourne les id des séries par ordre d'année de sortie.
 
+function getSeriesIdsByDate() {
+    return series
+        .sort((a, b) => b.launchYear - a.launchYear)
+        .map(s => s.id);
+}
 
 // 22/ Créer une fonction qui affiche les séries dans la page dans l'ordre des ids passés en paramètre.
 
