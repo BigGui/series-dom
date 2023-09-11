@@ -183,6 +183,10 @@ function displaySeriesByIds(ids) {
 
 // 12/ Créer une fonction qui retourne toutes les données d'une série à partir de sont ID.
 
+function getSerieFromId(id) {
+    return series.filter(s => s.id === id)[0];
+}
+
 
 // 13/ Créer une fonction qui permet qu'au clic sur une série, on affiche son id dans la console.
 
