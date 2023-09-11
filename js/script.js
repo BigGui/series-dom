@@ -31,13 +31,6 @@ fetchSeriesData('datas/series.json')
 
         activeLastStyle();
         manageClickOnSeries();
-
-        addSerieToFav(5);
-        addSerieToFav(12);
-        addSerieToFav(1);
-        addSerieToFav(5);
-        addSerieToFav(1);
-        console.log(favorites);
     });
 
 // 2/ Créer une fonction pour afficher toutes les séries dans la page avec pour chacune son titre et son image.
@@ -202,7 +195,7 @@ function getSerieFromId(id) {
 function manageClickOnSeries() {
     document.querySelectorAll('#series-container .serie-itm').forEach(serie => {
         serie.addEventListener('click', function(event) {
-            console.log(getSerieFromId(parseInt(this.dataset.id)));
+            addSerieToFav(parseInt(this.dataset.id));
         });
     });
 }
@@ -215,7 +208,9 @@ function manageClickOnSeries() {
 
 function addSerieToFav(id) {
     if (!series.map(s => s.id).includes(id) || favorites.includes(id)) return false;
+
     favorites.push(id);
+    displayFavorites();
     return true;
 }
 
@@ -223,6 +218,22 @@ function addSerieToFav(id) {
 
 
 // 17/ Créer une fonction qui affiche le nom des séries favorites dans la page.
+
+function displayFavorites() {
+    const favEl = document.getElementById('fav-lst');
+    favEl.innerHTML = '';
+    favEl.append(...favorites.map(id => createFavElement(getSerieFromId(id).name)));
+}
+
+function createFavElement(favorite) {
+    // Copy template
+    const favElement = document.importNode(document.getElementById('fav-template').content, true);
+
+    // Put the name
+    favElement.querySelector('.fav-itm').textContent = favorite;
+
+    return favElement;
+}
 
 
 // 18/ Créer une fonction permettant de retirer une série de la liste des favoris de par son id.
