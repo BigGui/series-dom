@@ -156,6 +156,9 @@ function activeLastStyle() {
 
         removeActiveStyles();
         event.target.classList.add('active');
+
+        // Display series from selected style
+        displaySeriesByIds(getIdFromStyle(event.target.dataset.styleName));
     });
 }
 
